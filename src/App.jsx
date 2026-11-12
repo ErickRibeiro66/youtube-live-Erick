@@ -1,20 +1,65 @@
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import Header from "./components/Header";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Live from "./pages/Live";
+import { buscarDados, chaves, removerDados, salvarDados } from "./services/storage";
 
-function App() {
+function Plataforma({ usuario, sair }) {
+  const { pathname } = useLocation();
+  const [menuAberto, setMenuAberto] = useState(() => window.matchMedia("(min-width: 901px)").matches);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 901px)");
+    function adaptarMenu(event) {
+      setMenuAberto(event.matches);
+    }
+    desktop.addEventListener("change", adaptarMenu);
+    return () => desktop.removeEventListener("change", adaptarMenu);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.getElementById("conteudo")?.focus({ preventScroll: true });
+  }, [pathname]);
+
+  return (
+    <>
+      <a className="skip-link" href="#conteudo">Ir para o conteúdo</a>
+      <Header key={pathname} usuario={usuario} sair={sair} menuAberto={menuAberto}
+        alternarMenu={() => setMenuAberto((aberto) => !aberto)} />
+      <Routes>
+        <Route path="/" element={<Home menuAberto={menuAberto} fecharMenu={() => setMenuAberto(false)} />} />
+        <Route path="/live/:id" element={<Live key={pathname} usuario={usuario} />} />
+        <Route path="*" element={<main id="conteudo" tabIndex={-1} className="empty-state">
+          <h1>Página não encontrada</h1><Link to="/">Voltar ao início</Link>
+        </main>} />
+      </Routes>
+    </>
+  );
+}
+
+export default function App() {
+  const [usuario, setUsuario] = useState(() => buscarDados(chaves.usuario));
+
+  function entrar(perfil) {
+    salvarDados(chaves.usuario, perfil);
+    setUsuario(perfil);
+  }
+
+  function sair() {
+    removerDados(chaves.usuario);
+    setUsuario(null);
+  }
+
+  // Esta proteção serve apenas para demonstrar o fluxo. Não há autenticação real.
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/live/:id" element={<Live />} />
+        <Route path="/login" element={usuario?.nome ? <Navigate to="/" replace /> : <Login entrar={entrar} />} />
+        <Route path="*" element={usuario?.nome ? <Plataforma usuario={usuario} sair={sair} /> : <Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
-export default App;
