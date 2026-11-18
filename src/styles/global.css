@@ -37,6 +37,7 @@ main[tabindex]:focus { outline: none; }
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
 .skip-link { position: fixed; z-index: 10; left: 8px; top: 8px; transform: translateY(-150%); padding: 12px; background: #fff; color: #111; }
 .skip-link:focus { transform: none; }
 .icon-button { display: inline-grid; place-items: center; flex: none; width: 42px; min-height: 42px; border-radius: 50%; padding: 0; }
@@ -68,6 +69,7 @@ main[tabindex]:focus { outline: none; }
   padding: 5px 12px 5px 16px;
   background: var(--background);
 }
+
 .header-brand, .header-actions { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .header-actions { justify-content: flex-end; }
 .header-brand > a { display: inline-flex; align-items: center; min-height: 42px; }
@@ -95,6 +97,7 @@ main[tabindex]:focus { outline: none; }
   overflow-wrap: anywhere;
   box-shadow: 0 8px 24px #0009;
 }
+
 .header-panel .pill { justify-self: start; }
 .lives-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 24px 16px; }
 .live-card a { display: block; border-radius: 12px; }
@@ -119,9 +122,11 @@ main[tabindex]:focus { outline: none; }
   .voice-button { margin: 0; }
   .lives-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
 }
+
 @media (max-width: 768px) {
   .lives-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
+
 @media (max-width: 650px) {
   :root { --header-height: 108px; }
   .site-header { grid-template-columns: minmax(0,1fr) auto; gap: 4px 8px; padding: 5px 10px 8px; }
@@ -130,9 +135,12 @@ main[tabindex]:focus { outline: none; }
   .header-actions { gap: 0; }
   .voice-button, .cast-button { display: none; }
 }
+
 @media (max-width: 470px) {
   .lives-grid { grid-template-columns: minmax(0,1fr); }
 }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
 }
+
