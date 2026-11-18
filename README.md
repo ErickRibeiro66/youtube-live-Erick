@@ -1,41 +1,79 @@
 # YouTube Live
 
-Protótipo acadêmico de uma plataforma fictícia de transmissões ao vivo. A interface usa React, JavaScript, Vite, React Router, CSS com Grid e Flexbox e ícones do Lucide. As imagens ilustrativas ficam no projeto e foram geradas com ImageGen.
+Protótipo front-end de uma plataforma de transmissões ao vivo, desenvolvido com **React**, **Vite** e **JavaScript**.
 
-## Execução local
+## Pré-requisitos
 
-Use Node.js 22.12 ou superior e npm em Windows, macOS ou Linux.
+- [Node.js](https://nodejs.org/) compatível com o Vite 8 (**20.19+ ou 22.12+**; prefira a versão LTS atual).
+- npm (instalado junto com o Node.js).
+- Um editor de código, como o Visual Studio Code.
 
-```sh
-npm ci
+Confira a instalação no terminal:
+
+```bash
+node -v
+npm -v
+```
+
+## Como executar
+
+**1. Clone o repositório:**
+
+```bash
+git clone https://github.com/GustavoHoffmann3/youtube-live.git
+```
+
+**2. Entre na pasta do projeto:**
+
+```bash
+cd youtube-live
+```
+
+**3. Instale as dependências:**
+
+```bash
+npm install
+```
+
+**4. Inicie o servidor de desenvolvimento:**
+
+```bash
 npm run dev
 ```
 
-Acesse a URL que o Vite mostrar no terminal. Também é possível instalar as dependências com `npm install`.
+**5. Abra o endereço informado no terminal**, normalmente:
 
-```sh
-npm run lint
+http://localhost:5173/
+
+> **Windows / PowerShell:** se aparecer o erro de execução de scripts bloqueada (`npm.ps1`), substitua `npm` por `npm.cmd`, por exemplo `npm.cmd install` e `npm.cmd run dev`.
+
+Para interromper o servidor, pressione **Ctrl + C** no terminal.
+
+## Outros comandos
+
+| Comando | Finalidade |
+| --- | --- |
+| `npm run dev` | Inicia o ambiente de desenvolvimento. |
+| `npm run build` | Gera a versão de produção na pasta `dist/`. |
+| `npm run preview` | Visualiza localmente a versão gerada pelo build. |
+| `npm run lint` | Executa a verificação estática do código com Oxlint. |
+
+Para testar o build de produção:
+
+```bash
 npm run build
 npm run preview
 ```
 
-O build fica em `dist/`. Na hospedagem estática, configure o servidor para encaminhar rotas como `/login` e `/live/1` para `index.html`.
+## Como acessar o protótipo
 
-## Telas
+Na tela de login, informe um **e-mail com formato válido** e **qualquer senha não vazia**. O login é fictício: não há servidor nem autenticação real.
 
-- **Login** valida o formato do e-mail e os campos obrigatórios, permite alternar a visibilidade da senha e abre a Home. Qualquer e-mail de formato válido e uma senha preenchida servem para a demonstração.
-- **Home** reúne o Festival Aurora, canais ao vivo, pesquisa por título, canal, categoria ou jogo, filtros, histórico, canais seguidos e lives com recompensas. O perfil oferece a opção de sair.
-- **Live** carrega a transmissão pelo ID e apresenta player demonstrativo, descrição, inscrição, curtida, compartilhamento, Pix ilustrativo, recomendações e chat local com mensagem fixada e enquete na transmissão de Erick Gameplays.
+Após entrar, você poderá navegar pela página inicial e pelas transmissões. Inscrições, curtidas, histórico e preferência de categoria são armazenados no `localStorage` do navegador. O player e o chat são demonstrativos; não há transmissão real.
 
-## Dados locais e limitações
+## Observações
 
-A proteção de rotas serve para demonstrar o fluxo. Não há autenticação real, servidor ou validação de credenciais. Use dados fictícios. O armazenamento guarda o nome de exibição derivado do e-mail, a categoria selecionada, IDs de lives curtidas e assistidas e nomes de canais seguidos. A senha e o endereço completo de e-mail ficam fora do armazenamento. Se o navegador bloquear o `localStorage`, o protótipo mantém as alterações em memória durante a sessão da página.
-
-A imagem do player é estática. Os controles de reprodução e som simulam estados, e a tela cheia usa o recurso do navegador. O compartilhamento usa o menu nativo ou a área de transferência, com opção de copiar manualmente. As mensagens do chat aparecem localmente e são descartadas ao sair da transmissão. Pix e recompensas são ilustrativos. As opções de voz, transmissão a outros dispositivos, Mapa IRL, Multiview e criação de canais exibem mensagens de indisponibilidade.
-
-## Qualidade da interface
-
-- **Usabilidade** — estados de seleção, mensagens de validação, feedback de compartilhamento e chat, estados vazios e ações reversíveis.
-- **Acessibilidade** — referências à WCAG 2.2 AA, navegação semântica, link para pular ao conteúdo, foco visível, controles de teclado, rótulos associados e preferência por movimento reduzido. O chat anuncia o envio de uma mensagem por vez.
-- **Responsividade** — grids fluidos, menu recolhível, player 16:9 e chat abaixo do player em telas menores.
-- **Portabilidade** — dependências declaradas com lockfile, imagens locais, caminhos gerenciados pelo Vite e tratamento de indisponibilidade do armazenamento e de APIs opcionais do navegador.
+- Não é necessário instalar ou configurar banco de dados.
+- A pasta `node_modules/` é criada ao instalar as dependências e não deve ser enviada ao GitHub.
+- Para atualizar uma cópia já clonada do repositório, utilize `git pull` na branch apropriada antes de instalar novas dependências, se necessário.
+- Caso a aplicação seja publicada em hospedagem estática, configure o redirecionamento das rotas para `index.html`, permitindo abrir diretamente páginas como `/login` e `/live/1`.

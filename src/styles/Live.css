@@ -6,6 +6,7 @@
   gap: 0 24px;
   padding-left: 17px;
 }
+
 .video-player {
   grid-area: player;
   position: relative;
@@ -18,6 +19,7 @@
   background: #131313;
   container-type: inline-size;
 }
+
 .video-player::after {
   content: "";
   position: absolute;
@@ -25,6 +27,7 @@
   z-index: -1;
   background: linear-gradient(0deg,#000e,transparent 25%),linear-gradient(180deg,#0005,transparent 32%);
 }
+
 .player-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
 .video-player:fullscreen { margin: 0; }
 .video-player:fullscreen .player-poster { object-fit: contain; }
@@ -79,6 +82,7 @@
   height: calc(100dvh - var(--header-height));
   border-left: 1px solid var(--border);
 }
+
 .chat-header { padding: 12px 18px; border-bottom: 1px solid var(--border); }
 .chat-header h2 { font-size: 1rem; }
 .chat-header p { color: var(--muted); font-size: .7rem; margin-top: 7px; }
@@ -109,14 +113,17 @@
 @media (max-width: 1350px) {
   .recommendations .lives-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
 }
+
 @media (max-width: 1050px) {
   .recommendations .lives-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
+
 @media (max-width: 900px) {
   .live-layout { grid-template-columns: minmax(0,1fr); grid-template-areas: "player" "chat" "info"; gap: 14px; padding: 0 16px; }
   .live-info { padding-top: 4px; }
   .live-chat { position: static; height: 390px; border: 1px solid var(--border); border-radius: 9px; overflow: hidden; }
 }
+
 @media (max-width: 480px) {
   .live-layout { padding-inline: 10px; }
   .recommendations .lives-grid { grid-template-columns: minmax(0,1fr); }
