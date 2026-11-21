@@ -28,3 +28,17 @@ export function abreviar(numero) {
 export function iniciais(nome) {
   return nome.trim().split(/\s+/).slice(0, 2).map((parte) => parte[0]).join("").toUpperCase();
 }
+
+let claro = false;
+
+export function Visao(){
+  if(claro == true){
+      claro = !claro;
+      document.body.classList.remove('light');
+      document.header.classList.remove('light');
+    } else {
+      claro = !claro;
+      document.body.classList.add('light');
+      document.header.classList.add('light');
+    }
+}
