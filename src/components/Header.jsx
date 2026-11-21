@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Bell, Cast, LogOut, Menu, Mic, Play, Search } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { iniciais } from "../data/lives";
+import { iniciais, Visao } from "../data/lives";
 
 export function Marca() {
   return <span className="brand"><span className="brand-play"><Play size={14} fill="currentColor" /></span>
@@ -72,6 +72,7 @@ export default function Header({ usuario, sair, menuAberto, alternarMenu }) {
           {painel === "perfil" ? <>
             <strong>{usuario.nome}</strong>
             <button className="pill" onClick={sair}><LogOut size={17} /> Sair</button>
+            <button className="pill" onClick={Visao}> Modo Escuro/Claro</button>
           </> : <p role="status">{
             { voz: "Pesquisa por voz indisponível. Use o campo de pesquisa.",
               cast: "A transmissão para outros dispositivos está indisponível neste protótipo.",
@@ -82,3 +83,4 @@ export default function Header({ usuario, sair, menuAberto, alternarMenu }) {
     </header>
   );
 }
+
